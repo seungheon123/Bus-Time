@@ -18,11 +18,9 @@ app.post('/hook', async function (req, res) {
     var eventObj = req.body.events[0];
     var source = eventObj.source;
     var message = eventObj.message;
-    const replyMessage = await makeMessage(source.userId, message.text);
-    // request log
     var afterMessage = message.text.split('\n');
-    console.log(afterMessage[0]);
-    console.log(afterMessage[1]);
+    const replyMessage = await makeMessage(source.userId, afterMessage);
+    // request log
     console.log('======================', new Date() ,'======================');
     console.log('[request source] ', eventObj.source);
     console.log('[request message]', eventObj.message);
