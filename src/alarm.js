@@ -11,6 +11,11 @@ const { getBusInfo, callRequest } = require('./bus');
 async function busArrivalAlarm(reqInfo) {
     return new Promise( async (resolve, reject) => {
         let busInfo = await getBusInfo(reqInfo)
+
+        // 운행중인 버스가 없으면, null 반환
+        if(busInfo[0] === undefined) {
+            resolve(null);
+        }
         // timeout은 (남은 예상시간) / 2
         // 남은 예상시간이 분 단위이기 때문에 timeout의 최소 단위는 30초
         let timeout = (Number(busInfo[0]) - reqInfo.alarmTiming) * 0.5 * 1000 * 60;
