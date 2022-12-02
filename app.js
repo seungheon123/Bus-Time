@@ -1,55 +1,36 @@
 var express = require('express');
-const request = require('request');
-const TARGET_URL = 'https://api.line.me/v2/bot/message/reply'
-const TOKEN = 'mk2ahKWDMaSAnFFTYtmqGqKJDteEGFtimIys5lxpqlmvmkSkp/UV3YkmKwJUjFyrISD8k/dcyNM4uMHWXC2Yf14EgxzbCGpZeNrpS6kmwft04F4AVf1427WEoXeDfaVBvZgbsw0qoZYq1yrT3MWfEgdB04t89/1O/w1cDnyilFU='
-const bodyParser = require('body-parser');
-var app = express();
+require("dotenv").config();
+
 const fs = require('fs');
 const path = require('path');
 const HTTPS = require('https');
-const domain = "도메인"
+const domain = "2018102225.oss2022chatbot.ml"
 const sslport = 23023;
 
+const bodyParser = require('body-parser');
+const { recvMessage, makeMessage } = require('./src/chatbot');
+
+var app = express();
 app.use(bodyParser.json());
 
-app.post('/hook', function (request, response) {
+app.post('/hook', async function (req, res) {
 
-    var eventObj = request.body.events[0];
-    var start;
-    var bus;
-    console.log('======================', new Date() ,'======================');
-    if(eventObj.message.text.substring(0,2)=="출발") start = eventObj.message.text.substring(3,eventObj.message.text.length);
-    if(eventObj.message.text.substring(0,2)=="버스") bus = eventObj.message.text.substring(3,eventObj.message.text.length);
+    var eventObj = req.body.events[0];
+    var source = eventObj.source;
+    var message = eventObj.message;
+
+    const replyMessage = await makeMessage(source.userId, message.text);
+
     // request log
-    console.log(start);
-    console.log(bus);
-    request.post(
-      {
-          url: TARGET_URL,
-          headers: {
-              'Authorization': `Bearer ${TOKEN}`
-          },
-          json: {
-              "replyToken":eventObj.replyToken,
-              "messages":[
-                  {
-                      "type":"text",
-                      "text":start
-                  },
-                  {
-                      "type":"text",
-                      "text":bus
-                  }
-              ]
-          }
-      },(error, response, body) => {
-          console.log(body)
-      });
-  
+    console.log('======================', new Date() ,'======================');
+    console.log('[request source] ', eventObj.source);
+    console.log('[request message]', eventObj.message);
 
-    response.sendStatus(200);
-    
+    recvMessage(eventObj.replyToken, replyMessage);
+
+    res.sendStatus(200);
 });
+
 
 
 try {
