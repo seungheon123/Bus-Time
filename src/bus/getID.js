@@ -92,3 +92,8 @@ function GetRouteID (StationID, GivenRouteID) {
     }
   })
 }
+
+module.exports = {
+  GetStationID,
+  GetRouteID,
+}
