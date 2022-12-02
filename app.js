@@ -25,7 +25,8 @@ app.post('/hook', async function (req, res) {
     console.log('[request source] ', eventObj.source);
     console.log('[request message]', eventObj.message);
 
-    recvMessage(eventObj.replyToken, replyMessage);
+  recvMessage(eventObj.replyToken, replyMessage);
+  
 
     res.sendStatus(200);
 });
