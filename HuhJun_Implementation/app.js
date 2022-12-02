@@ -13,57 +13,82 @@ const BusArrival_Key = '3NEtY8P7tLlXUJtdgstFMqDvwt%2FYg1jcxchYNhThC5OQAT0CPKC%2B
 
 var convert = require('xml-js'); // xml 파일을 json으로 변환
 
+var GivenStationName = '사색의광장';
+var GivenRouteID = '5100'
+var StationID;
+var RouteID;
+
 
 // 정류소 ID 받아오기
-var queryParams_GetStationID = '?' + encodeURIComponent('serviceKey') + '=' + Station_Key; /* Service Key*/
-queryParams_GetStationID += '&' + encodeURIComponent('keyword') + '=' + encodeURIComponent('사색의광장'); /* 입력값: 사색의 광장 */
-var requestURL1 = Station_URL + queryParams_GetStationID;
+// 입력값: 정류소 명 (ex: '사색의광장')
+// 출력값: 정류소 ID (ex: '228000708')
 
-request.get(requestURL1, (err, res, body) => {
-
-  if (err) {
-    console.log('err => ' + err);
-  } else {
-    if (res.statusCode == 200) {
-      var result = body;
-      var xmlToJson = convert.xml2json(result, {compact: true, spaces: 4});
-      const obj = JSON.parse(xmlToJson); // json 파싱
-      
-      console.log(obj.response.msgBody.busStationList[0].stationId._text); // 사색의 광장 이름인 정류소가 두개네요
-      console.log(obj.response.msgBody.busStationList[1].stationId._text);
-    }
-  }
-})
-
-// 받아온 StationID로 해당 정류소를 지나가는 노선의 RouteID 검색 -> 우리가 알고자 하는 버스의 노선ID 알 수 있다
-var queryParams_GetRouteID = '?' + encodeURIComponent('serviceKey') + '=' + Station_Key; /* Service Key*/
-queryParams_GetRouteID += '&' + encodeURIComponent('stationId') + '=' + encodeURIComponent('228000708');
-var requestURL2 = Route_URL + queryParams_GetRouteID;
-
-request.get(requestURL2, (err, res, body) => {
-  if (err) {
-    console.log('err => ' + err);
-  } else {
-    if (res.statusCode == 200) {
-      var result = body;
-      var givenRoute = '5100';
-      var search = false;
-      var where;
-      var xmlToJson = convert.xml2json(result, {compact: true, spaces: 4});
-      const obj = JSON.parse(xmlToJson);
-      const routeList = obj.response.msgBody.busRouteList;
-
-      for (var i = 0; i < routeList.length; i++) {
-        if (routeList[i].routeName._text == givenRoute) {
-          search = true;
-          where = i;
+function GetStationID (GivenStationName) {
+  var queryParams_GetStationID = '?' + encodeURIComponent('serviceKey') + '=' + Station_Key; /* Service Key*/
+  queryParams_GetStationID += '&' + encodeURIComponent('keyword') + '=' + encodeURIComponent(GivenStationName); /* 입력값 */
+  var requestURL1 = Station_URL + queryParams_GetStationID;
+  
+  request.get(requestURL1, (err, res, body) => {
+    if (err) {
+      console.log('err => ' + err);
+    } else {
+      if (res.statusCode == 200) {
+        var result = body;
+        var xmlToJson = convert.xml2json(result, {compact: true, spaces: 4});
+        const obj = JSON.parse(xmlToJson); // json 파싱
+        const stationList = obj.response.msgBody.busStationList;
+        var count = 0;
+        
+        console.log(stationList[0].stationId._text);
+        for (var i = 0; i < stationList.length; i++) {
+          if (stationList[i].stationName == GivenStationName) {
+            console.log(stationList[i].stationId._text);
+            count++;
+            StationID = stationList[i].stationId._text;
+          }
+        }
+        if (count > 1) {
+          // 현경님 함수 호출
         }
       }
+    }
+})
+}
 
-      if (search) {
-        console.log(routeList[where].routeId._text);
+
+
+// 받아온 StationID로 해당 정류소를 지나가는 노선의 RouteID 검색 -> 우리가 알고자 하는 버스의 노선ID 알 수 있다
+// 입력값: 정류소 ID, 원하는 노선 이름(ex: '5100')
+// 출력값: 노선 ID (ex: '00000000')
+function GetRouteID (StationID, GivenRouteID) {
+
+  var queryParams_GetRouteID = '?' + encodeURIComponent('serviceKey') + '=' + Station_Key; /* Service Key*/
+  queryParams_GetRouteID += '&' + encodeURIComponent('stationId') + '=' + encodeURIComponent(StationID);
+  var requestURL2 = Route_URL + queryParams_GetRouteID;
+
+  request.get(requestURL2, (err, res, body) => {
+    if (err) {
+      console.log('err => ' + err);
+    } else {
+      if (res.statusCode == 200) {
+        var result = body;
+        var search = false;
+        var where;
+        var xmlToJson = convert.xml2json(result, {compact: true, spaces: 4});
+        const obj = JSON.parse(xmlToJson);
+        const routeList = obj.response.msgBody.busRouteList;
+  
+        for (var i = 0; i < routeList.length; i++) {
+          if (routeList[i].routeName._text == GivenRouteID) {
+            search = true;
+            where = i;
+          }
+        }
+  
+        if (search) {
+          RouteID = routeList[where].routeId._text;
+        }
       }
     }
-  }
-})
-
+  })
+}
