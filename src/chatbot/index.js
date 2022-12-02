@@ -4,13 +4,12 @@ const callRequest = require("../bus/request")
 let userState = {};
 
 async function makeMessage(replyToken, message) {
-    if (message === '버스') {
+    if ( message== '버스') {
         return await callRequest();
     } else {
         return "명령어를 다시 입력하세요."
     }
 }
-
 function recvMessage(replyToken, messsage) {
     request.post(
         {
