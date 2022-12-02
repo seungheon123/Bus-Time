@@ -20,7 +20,7 @@ app.post('/hook', async function (req, res) {
     var message = eventObj.message;
     const replyMessage = await makeMessage(source.userId, message.text);
     // request log
-    var afterMessage = message.split('\n');
+    var afterMessage = message.text.split('\n');
     console.log(afterMessage[0]);
     console.log(afterMessage[1]);
     console.log('======================', new Date() ,'======================');
