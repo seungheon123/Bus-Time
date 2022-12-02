@@ -42,7 +42,7 @@ app.post('/hook', async function (req, res) {
       // 단위: 분 전
       let busList = await getBusInfo(reqInfo);
 
-      // 라인 API로 메세지 보내기
+      // 대답할 메세지 만들기
       if(busList[0] === undefined) {
         replyString = "현재 운행중인 버스가 없습니다"
       } else {
@@ -55,6 +55,7 @@ app.post('/hook', async function (req, res) {
       }
     }
 
+    // 라인 reply api로 메세지 보내기
     reply(eventObj.replyToken, replyString);
 
     res.sendStatus(200);
