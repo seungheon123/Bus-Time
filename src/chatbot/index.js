@@ -2,7 +2,7 @@ const request = require("request");
 const callRequest = require("../bus/request")
 let userState = {};
 async function makeMessage(replyToken, message) {
-    if (message === '버스') {
+    if ( message== '버스') {
         return await callRequest();
     } else if (message == '9' || message == '7000' || message == '5100' || message == '1112') {
         return await callRequest(message);

@@ -7,8 +7,13 @@ const HTTPS = require('https');
 const domain = "2018102225.oss2022chatbot.ml"
 const sslport = 23023;
 
+
+
 const bodyParser = require('body-parser');
 const { recvMessage, makeMessage } = require('./src/chatbot');
+
+const {GetStationID,GetRouteID} = require("./src/bus/getID");
+var id;
 
 var app = express();
 app.use(bodyParser.json());
@@ -18,11 +23,12 @@ app.post('/hook', async function (req, res) {
     var eventObj = req.body.events[0];
     var source = eventObj.source;
     var message = eventObj.message;
-    const replyMessage = await makeMessage(source.userId, message.text);
-    // request log
     var afterMessage = message.text.split('\n');
-    console.log(afterMessage[0]);
-    console.log(afterMessage[1]);
+    id = await GetStationID(afterMessage[0]);
+    const replyMessage = await makeMessage(source.userId, afterMessage);
+    
+    // request log
+
     console.log('======================', new Date() ,'======================');
     console.log('[request source] ', eventObj.source);
     console.log('[request message]', eventObj.message);
