@@ -44,11 +44,10 @@ request.get (requestURL3,(err, res, body) => {
 
 
 
-//타이머 시간 입력받아서 입력받은 시간값이 나올때까지 request.get
+//해당 정류장 버스의 남은 도착시간
 var queryParams2 = '?' + encodeURIComponent('serviceKey') + '=' + BusArrival_Key;
 queryParams2 += '&' + encodeURIComponent('stationId') + '=' + encodeURIComponent('203000125') + '&'+ encodeURIComponent('routeId')+'='+ encodeURIComponent('200000115') + '&' + encodeURIComponent('staOrder') + '=' + encodeURIComponent('4');
-var requestURL4 = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalItem?serviceKey=3NEtY8P7tLlXUJtdgstFMqDvwt%2FYg1jcxchYNhThC5OQAT0CPKC%2BskRCn1nebyPuU%2BMtwGtt9d9%2BREAqUOed%2Bg%3D%3D&stationId=203000125&routeId=200000115&staOrder=4';
-//'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalItem?serviceKey=3NEtY8P7tLlXUJtdgstFMqDvwt%2FYg1jcxchYNhThC5OQAT0CPKC%2BskRCn1nebyPuU%2BMtwGtt9d9%2BREAqUOed%2Bg%3D%3D&stationId=203000125&routeId=200000115&staOrder=4'
+var requestURL4 = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList?serviceKey=3NEtY8P7tLlXUJtdgstFMqDvwt%2FYg1jcxchYNhThC5OQAT0CPKC%2BskRCn1nebyPuU%2BMtwGtt9d9%2BREAqUOed%2Bg%3D%3D&stationId=203000125';
 request.get (requestURL4, (err,res, body) => {
     if (err) {
         console.log('err => ' + err);
@@ -57,9 +56,13 @@ request.get (requestURL4, (err,res, body) => {
             var result = body;
             var xmlToJson = convert.xml2json(result, {compact: true, spaces: 4});
             const obj = JSON.parse(xmlToJson);
-            const ArrivalItem = obj.response.msgBody.busArrivalItem;
+            const ArrivalItem = obj.response.msgBody.busArrivalList;
            
-            console.log("버스도착", ArrivalItem.predictTime1._text,"분 전입니다.");
+            for (var i = 0; i < ArrivalItem.length; i++) {
+              if (ArrivalItem[i].routeId._text == '200000115') {
+                console.log(ArrivalItem[i].predictTime1._text,"분 남음");
+              }
+            }
         }
       }
 })
