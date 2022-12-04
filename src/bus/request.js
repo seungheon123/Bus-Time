@@ -8,7 +8,7 @@ var url = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList';
 
 function callRequest(stationKey, message = "all") {
     return new Promise((resolve, reject) => {
-        var queryParams = '?' + encodeURIComponent('serviceKey') + process.env.SERVICE_KEY; /* Service Key*/
+        var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + process.env.SERVICE_KEY; /* Service Key*/
         queryParams += '&' + encodeURIComponent('stationId') + '=' + encodeURIComponent(stationKey); /* */
 
         request({

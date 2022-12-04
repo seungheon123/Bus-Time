@@ -9,7 +9,7 @@ const sslport = 23023;
 
 const bodyParser = require('body-parser');
 const { recvMessage, makeMessage } = require('./src/chatbot');
-const { GetStationID, GetRouteID } = require('./src/bus/getid.js')
+const { GetStationID, GetRouteID } = require('./src/bus/getID.js')
 
 var app = express();
 app.use(bodyParser.json());

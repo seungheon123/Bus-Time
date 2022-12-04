@@ -1,7 +1,7 @@
 const request = require("request");
 const callRequest = require("../bus/request")
 const { stationIdBusList } = require("../bus/routeidmap")
-const GetStationID = require("../bus/getid.js")
+const GetStationID = require("../bus/getID.js")
 let userState = {};
 
 
