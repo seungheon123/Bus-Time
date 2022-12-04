@@ -1,14 +1,21 @@
 const request = require("request");
 const callRequest = require("../bus/request")
+const { stationIdBusList } = require("../bus/routeidmap")
+const GetStationID = require("../bus/getID.js")
 let userState = {};
-async function makeMessage(replyToken, message) {
-    if (message === '버스') {
-        return await callRequest();
-    } else if (message == '9' || message == '7000' || message == '5100' || message == '1112') {
-        return await callRequest(message);
+
+
+async function makeMessage(replyToken, stationId, message) {
+    if (message === '전체') {
+        return await callRequest(stationId);
+    } 
+
+    if (stationIdBusList[stationId].includes(String(message))) {
+        return await callRequest(stationId, message);
     } else {
         return "명령어를 다시 입력하세요."
     }
+    
 }
 function recvMessage(replyToken, messsage) {
     request.post(
