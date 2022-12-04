@@ -4,7 +4,7 @@ require("dotenv").config();
 const fs = require('fs');
 const path = require('path');
 const HTTPS = require('https');
-const domain = "2018102225.oss2022chatbot.ml"
+const domain = process.env.DOMAIN
 const sslport = 23023;
 
 const bodyParser = require('body-parser');

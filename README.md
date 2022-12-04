@@ -1,0 +1,7 @@
+# BUS-TIME
+
+## .env  
+DOMAIN =  
+LINE_TARGET_URL =  
+CHATBOT_TOKEN =  
+SERVICE_KEY =  
