@@ -21,25 +21,31 @@ function callRequest(stationKey, message = "all") {
             if (!data) resolve("운행 중인 버스가 없습니다.");
 
             let result = "";
-            if (message == "all") {
-                for (let i in data) {
-                    result += `${data[i].routeId._text}번 버스 도착 정보입니다\n`;
-                    result += `첫 번째 도착: ${data[i].predictTime1._text}분\n`
-                    if (data[i].predictTime2._text)
-                        result += `두 번째 도착: ${data[i].predictTime2._text}분\n`;
-                    result += "\n";
+            // if (message == "all") {
+            //     for (let i in data) {
+            //         result += `${data[i].routeId._text}번 버스 도착 정보입니다\n`;
+            //         result += `첫 번째 도착: ${data[i].predictTime1._text}분\n`
+            //         if (data[i].predictTime2._text)
+            //             result += `두 번째 도착: ${data[i].predictTime2._text}분\n`;
+            //         result += "\n";
                             
 
-                    console.log(data[i])
+            //         console.log(data[i])
 
 
-                }
-            } else {
-                for (let i in data) {
-                    if (data[i].routeId._text == message) {
-                        result += `${routeIdToBusNum[data[i].routeId._text]}번 버스 도착 정보입니다\n`;
-                        result += `첫 번째 도착: ${data[i].predictTime1._text}분\n두 번째 도착: ${data[i].predictTime2._text}분\n\n`;
-                    }
+            //     }
+            // } else {
+            //     for (let i in data) {
+            //         if (data[i].routeId._text == message) {
+            //             result += `${routeIdToBusNum[data[i].routeId._text]}번 버스 도착 정보입니다\n`;
+            //             result += `첫 번째 도착: ${data[i].predictTime1._text}분\n두 번째 도착: ${data[i].predictTime2._text}분\n\n`;
+            //         }
+            //     }
+            // }
+            for(let i in data){
+                if(data[i].routeId._text == message){
+                    result += `${routeIdToBusNum[data[i].routeId._text]}번 버스 도착 정보입니다\n`;
+                    result += `첫 번째 도착: ${data[i].predictTime1._text}분\n두 번째 도착: ${data[i].predictTime2._text}분\n\n`;
                 }
             }
 
