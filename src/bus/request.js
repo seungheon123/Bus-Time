@@ -17,8 +17,13 @@ function callRequest(stationKey, message = "all") {
         }, function (error, response, body) {
             // console.log(stationKey)
             // console.log(convert.xml2js(body, { compact: true }).response)
-            const data = convert.xml2js(body, { compact: true }).response.msgBody.busArrivalList
-            if (!data) resolve("운행 중인 버스가 없습니다.");
+            const data = convert.xml2js(body, { compact: true }).response;
+            var rmessage = data.msgHeader.resultMessage._text;
+            if (rmessage == '결과가 존재하지 않습니다.') {
+                resolve("운행 중인 버스가 없습니다.");
+                return;
+            }
+            else data = data.msgBody.busArrivalList;
 
             let result = "";
             // if (message == "all") {
