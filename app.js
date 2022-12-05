@@ -27,23 +27,17 @@ app.post('/hook', async function (req, res) {
   var afterMessage = message.text.split('\n');
 
   StationID = await GetStationID(afterMessage[0]).catch((err) => console.log(err));
-  if (!StationID) {
-    recvMessage(eventObj.replyToken, "잘못된 정류장 이름입니다.");  
-    return res.sendStatus(400);
-  }
+
 
   RouteID = await GetRouteID(StationID, afterMessage[1]).catch((err) => console.log(err));
-  if (!RouteID) {
-    recvMessage(eventObj.replyToken, "잘못된 노선 번호입니다.");  
-    return res.sendStatus(400);
-  }
+
   console.log(RouteID); // RouteID 출력되도록 수정했습니다
 
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
   var replyMessage;
   if(RouteID == 'undefined'){
-    replyMessage = await makeMessage(source.userId,StationID,afterMessage[1]);
+    replyMessage = '없는 버스 번호입니다';
   }
   else{
     replyMessage = await makeMessage(source.userId, StationID,RouteID);
