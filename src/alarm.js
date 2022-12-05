@@ -1,13 +1,14 @@
 var request = require('request');
 const convert = require("xml-js");
 const { routeIdToBusNum } = require("./bus/routeidmap");
+const { GetStationID, GetRouteID } = require("./bus/getID.js")
 
 /**
  * @brief reqInfo을 받아서 버스가 reqInfo.alarmTiming분 후에 도착할 것으로 예상될 때 reqInfo를 가지는 Promise를 반환
  * 
  * @description 재귀함수를 이용해 버스가 충분히 올 때까지 기다림
  * 
- * @param {{orderType: string, station: string, busId: number, alarmTiming: number}} reqInfo 
+ * @param {{stationId: number, routeId: number, alarmTiming: number}} reqInfo routeId is not bus name
  * @returns {Promise} info
  */
 async function busArrivalAlarm(reqInfo) {
@@ -38,17 +39,17 @@ async function busArrivalAlarm(reqInfo) {
     })
 }
 
-// https://www.data.go.kr/data/15080346/openapi.do?recommendDataYn=Y
-var url = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList';
-var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + process.env.SERVICE_KEY; /* Service Key*/
-queryParams += '&' + encodeURIComponent('stationId') + '=' + encodeURIComponent('228000710');
-
 /**
  * 
- * @param {{orderType: string, station: string, busId: number, alarmTiming: number}} reqInfo 
+ * @param {{stationId: number, routeId: number, alarmTiming: number}} reqInfo routeId is not bus name
  * @returns {[predictTime1: string, predictTime2: string]} 도착 예정인 2개의 버스에 대한 정보
  */
 async function getBusInfo(reqInfo) {
+    // https://www.data.go.kr/data/15080346/openapi.do?recommendDataYn=Y
+    var url = 'http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList';
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + process.env.SERVICE_KEY; /* Service Key*/
+    queryParams += '&' + encodeURIComponent('stationId') + '=' + encodeURIComponent(reqInfo.stationId);
+
     return new Promise((resolve, reject) => {
         request({
             url: url + queryParams,
@@ -58,7 +59,7 @@ async function getBusInfo(reqInfo) {
             
             let result = [];
             for (let i in data) {
-                if(routeIdToBusNum[data[i].routeId._text] === reqInfo.busId) {
+                if(data[i].routeId._text == reqInfo.routeId) {
                     result.push(data[i].predictTime1._text);
                     result.push(data[i].predictTime2._text);
                     break
