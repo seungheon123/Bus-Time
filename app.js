@@ -1,13 +1,15 @@
 var express = require('express');
+// 환경변수 관리를 위해서 dotenv 사용
 require("dotenv").config();
 
 const fs = require('fs');
 const path = require('path');
 const HTTPS = require('https');
-const domain = process.env.DOMAIN
+const domain = process.env.DOMAIN;
 const sslport = 23023;
 
 const bodyParser = require('body-parser');
+
 const { recvMessage, makeMessage } = require('./src/chatbot');
 const { GetStationID, GetRouteID } = require('./src/bus/getID.js')
 
@@ -42,11 +44,8 @@ app.post('/hook', async function (req, res) {
 
   recvMessage(eventObj.replyToken, replyMessage);
 
-
   res.sendStatus(200);
 });
-
-
 
 try {
   const option = {
