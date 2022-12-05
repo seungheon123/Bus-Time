@@ -17,7 +17,7 @@ async function makeMessage(replyToken, stationId, message) {
     }
     
 }
-function recvMessage(replyToken, messsage) {
+function recvMessage(replyToken, message) {
     request.post(
         {
             url: process.env.LINE_REPLY_URL,
@@ -67,6 +67,7 @@ function push(userId, message) {
     console.log(message)
 };
 module.exports = {
-    reply,
     push,
+    makeMessage,
+    recvMessage
 }
