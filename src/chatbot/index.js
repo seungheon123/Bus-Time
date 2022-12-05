@@ -6,13 +6,7 @@ let userState = {};
 
 
 async function makeMessage(replyToken, stationId, message) {
-    if (message === '전체') {
-        return await callRequest(stationId);
-    } 
-
-   else{
     return await callRequest(stationId,message);
-   }
     
 }
 function recvMessage(replyToken, message) {
