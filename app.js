@@ -10,8 +10,9 @@ const sslport = 23023;
 
 const bodyParser = require('body-parser');
 
-const { recvMessage, makeMessage } = require('./src/chatbot');
-const { GetStationID, GetRouteID } = require('./src/bus/getID.js')
+const { recvMessage, makeMessage, push } = require('./src/chatbot');
+const { GetStationID, GetRouteID } = require('./src/bus/getID.js');
+const { busArrivalAlarm } = require('./src/alarm');
 
 var app = express();
 app.use(bodyParser.json());
@@ -35,13 +36,25 @@ app.post('/hook', async function (req, res) {
 
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
-  var replyMessage;
+  var replyMessage = "";
   if(RouteID == 'undefined'){
     replyMessage = '없는 버스 번호입니다';
   }
   else{
     replyMessage = await makeMessage(source.userId, StationID,RouteID);
   }
+
+  // 알람 설정
+  if(parseInt(afterMessage[2])) {
+    if(RouteID && StationID) {
+      busArrivalAlarm({stationId: StationID, routeId: RouteID, alarmTiming: parseInt(afterMessage[2])}).then( (info) => {
+        push(source.userId, afterMessage[1] + "번 버스가 곧 도착합니다.");
+      })
+    } else {
+      replyMessage += " 알람은 설정되지 않았습니다"
+    }
+  }
+
   // request log
   console.log('======================', new Date(), '======================');
   console.log('[request source] ', eventObj.source);
