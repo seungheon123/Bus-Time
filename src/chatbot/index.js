@@ -67,6 +67,7 @@ function push(userId, message) {
     console.log(message)
 };
 module.exports = {
-    reply,
     push,
+    makeMessage,
+    recvMessage
 }
