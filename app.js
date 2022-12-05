@@ -41,9 +41,13 @@ app.post('/hook', async function (req, res) {
 
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
-
-  const replyMessage = await makeMessage(source.userId, StationID, afterMessage[1]);
-
+  var replyMessage;
+  if(RouteID == 'undefined'){
+    replyMessage = await makeMessage(source.userId,StationID,afterMessage[1]);
+  }
+  else{
+    replyMessage = await makeMessage(source.userId, StationID,RouteID);
+  }
   // request log
   console.log('======================', new Date(), '======================');
   console.log('[request source] ', eventObj.source);
