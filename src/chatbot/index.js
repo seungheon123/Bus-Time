@@ -1,19 +1,26 @@
 const request = require("request");
 const callRequest = require("../bus/request")
+const { stationIdBusList } = require("../bus/routeidmap")
+const GetStationID = require("../bus/getID.js")
 let userState = {};
-async function makeMessage(replyToken, message) {
-    if (message === '버스') {
-        return await callRequest();
-    } else if (message == '9' || message == '7000' || message == '5100' || message == '1112') {
-        return await callRequest(message);
+
+
+async function makeMessage(replyToken, stationId, message) {
+    if (message === '전체') {
+        return await callRequest(stationId);
+    } 
+
+    if (stationIdBusList[stationId].includes(String(message))) {
+        return await callRequest(stationId, message);
     } else {
         return "명령어를 다시 입력하세요."
     }
+    
 }
 function recvMessage(replyToken, messsage) {
     request.post(
         {
-            url: process.env.LINE_TARGET_URL,
+            url: process.env.LINE_REPLY_URL,
             headers: {
                 'Authorization': `Bearer ${process.env.CHATBOT_TOKEN}`
             },
@@ -22,7 +29,7 @@ function recvMessage(replyToken, messsage) {
                 "messages": [
                     {
                         "type": "text",
-                        "text": messsage
+                        "text": message
                     }
                 ]
             }
@@ -30,8 +37,36 @@ function recvMessage(replyToken, messsage) {
             // console.log(body)
         }
     );
+
+    console.log("[reply]")
+    console.log(message)
+};
+
+function push(userId, message) {
+    request.post(
+        {
+            url: process.env.LINE_PUSH_URL,
+            headers: {
+                'Authorization': `Bearer ${process.env.CHATBOT_TOKEN}`
+            },
+            json: {
+                "to": userId,
+                "messages": [
+                    {
+                        "type": "text",
+                        "text": message
+                    }
+                ]
+            }
+        }, (error, response, body) => {
+            // console.log(body)
+        }
+    );
+
+    console.log("[push]")
+    console.log(message)
 };
 module.exports = {
-    recvMessage,
-    makeMessage,
+    reply,
+    push,
 }
