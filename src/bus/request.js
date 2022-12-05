@@ -23,7 +23,7 @@ function callRequest(stationKey, message = "all") {
                 resolve("운행 중인 버스가 없습니다.");
                 return;
             }
-            else data = data.msgBody.busArrivalList;
+            else var arrivalList = data.msgBody.busArrivalList;
 
             let result = "";
             // if (message == "all") {
@@ -47,10 +47,10 @@ function callRequest(stationKey, message = "all") {
             //         }
             //     }
             // }
-            for(let i in data){
-                if(data[i].routeId._text == message){
-                    result += `${routeIdToBusNum[data[i].routeId._text]}번 버스 도착 정보입니다\n`;
-                    result += `첫 번째 도착: ${data[i].predictTime1._text}분\n두 번째 도착: ${data[i].predictTime2._text}분\n\n`;
+            for(let i in arrivalList){
+                if(arrivalList[i].routeId._text == message){
+                    result += `${routeIdToBusNum[arrivalList[i].routeId._text]}번 버스 도착 정보입니다\n`;
+                    result += `첫 번째 도착: ${arrivalList[i].predictTime1._text}분\n두 번째 도착: ${arrivalList[i].predictTime2._text}분\n\n`;
                 }
             }
 
