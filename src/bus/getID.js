@@ -10,7 +10,7 @@ const Route_URL = 'http://apis.data.go.kr/6410000/busstationservice/getBusStatio
 function GetStationID(GivenStationName) {
     return new Promise((resolve, reject) => {
         // console.log(GivenStationName);
-        var queryParams_GetStationID = '?' + encodeURIComponent('serviceKey') + '=' + process.env.SERVICE_KEY; /* Service Key*/
+        var queryParams_GetStationID = '?' + encodeURIComponent('serviceKey') + '=' + process.env.KEY; /* Service Key*/
         queryParams_GetStationID += '&' + encodeURIComponent('keyword') + '=' + encodeURIComponent(GivenStationName); /* 입력값 */
         var requestURL1 = Station_URL + queryParams_GetStationID;
     
@@ -64,7 +64,7 @@ function GetStationID(GivenStationName) {
 function GetRouteID(StationID, GivenRoute) {
     return new Promise((resolve, reject) => {
         // console.log(GivenStationName);
-        var queryParams_GetRouteID = '?' + encodeURIComponent('serviceKey') + '=' + process.env.SERVICE_KEY; /* Service Key*/
+        var queryParams_GetRouteID = '?' + encodeURIComponent('serviceKey') + '=' + process.env.KEY; /* Service Key*/
         queryParams_GetRouteID += '&' + encodeURIComponent('stationId') + '=' + encodeURIComponent(StationID); /* 입력값 */
         var requestURL2 = Route_URL + queryParams_GetRouteID;
     
