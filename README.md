@@ -2,7 +2,7 @@
 
 ## .env  
 DOMAIN =  
-LINE_TARGET_URL =  
+LINE_REPLY_URL =  
 CHATBOT_TOKEN =  
 SERVICE_KEY =  
 KEY = 
