@@ -32,6 +32,13 @@ app.post('/hook', async function (req, res) {
     return res.sendStatus(400);
   }
 
+  RouteID = await GetRouteID(StationID, afterMessage[1]).catch((err) => console.log(err));
+  if (!RouteID) {
+    recvMessage(eventObj.replyToken, "잘못된 노선 번호입니다.");  
+    return res.sendStatus(400);
+  }
+  console.log(RouteID); // RouteID 출력되도록 수정했습니다
+
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
 
