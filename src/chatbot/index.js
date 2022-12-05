@@ -10,11 +10,9 @@ async function makeMessage(replyToken, stationId, message) {
         return await callRequest(stationId);
     } 
 
-    if (stationIdBusList[stationId].includes(String(message))) {
-        return await callRequest(stationId, message);
-    } else {
-        return "명령어를 다시 입력하세요."
-    }
+   else{
+    return await callRequest(stationId,message);
+   }
     
 }
 function recvMessage(replyToken, message) {
