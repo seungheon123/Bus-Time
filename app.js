@@ -11,7 +11,8 @@ const sslport = 23023;
 const bodyParser = require('body-parser');
 
 const { recvMessage, makeMessage } = require('./src/chatbot');
-const { GetStationID, GetRouteID } = require('./src/bus/getID.js')
+const { GetStationID, GetRouteID } = require('./src/bus/getID.js');
+const OneStationID = require('./src/bus/onestationid.js');
 
 var app = express();
 app.use(bodyParser.json());
@@ -27,28 +28,47 @@ app.post('/hook', async function (req, res) {
   var afterMessage = message.text.split('\n');
 
   StationID = await GetStationID(afterMessage[0]).catch((err) => console.log(err));
-  if (!StationID) {
-    recvMessage(eventObj.replyToken, "잘못된 정류장 이름입니다.");  
-    return res.sendStatus(400);
-  }
 
-  RouteID = await GetRouteID(StationID, afterMessage[1]).catch((err) => console.log(err));
-  if (!RouteID) {
-    recvMessage(eventObj.replyToken, "잘못된 노선 번호입니다.");  
-    return res.sendStatus(400);
-  }
+  console.log(StationID[0]);
+  console.log(StationID[1]);
+
+  RouteID = await GetRouteID(StationID[0], afterMessage[1]).catch((err) => console.log(err));
+
   console.log(RouteID); // RouteID 출력되도록 수정했습니다
 
+  if (StationID.length > 1) {
+    console.log(StationID[0]);
+    console.log(StationID[1]);
+  
+    m = await OneStationID(RouteID, afterMessage[0]).catch((err) => console.log(err));
+    if (!m) {
+      recvMessage(eventObj.replyToken, "OneStationID오류");  
+      return res.sendStatus(400);
+    }
+  
+    var s = "1번 : " + m[0] + " \n2번 : " +m[2];
+    recvMessage(eventObj.replyToken , s);
+
+  }
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
-
-  const replyMessage = await makeMessage(source.userId, StationID, afterMessage[1]);
-
+  var replyMessage;
+  var replyM1 = "";
+  var replyM2 = "";
+  if(RouteID == undefined){
+    replyMessage = '없는 버스 번호입니다';
+  }
+  else{
+    replyM1 += afterMessage[1] + ' 번 버스 도착 정보입니다.\n';
+    replyM2 = await makeMessage(source.userId, StationID[0],RouteID);
+    replyMessage = replyM1 + replyM2;
+  }
+  console.log(replyMessage);
+  console.log('------------');
   // request log
   console.log('======================', new Date(), '======================');
   console.log('[request source] ', eventObj.source);
   console.log('[request message]', eventObj.message);
-
   recvMessage(eventObj.replyToken, replyMessage);
 
   res.sendStatus(200);
