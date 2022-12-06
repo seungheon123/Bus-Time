@@ -28,6 +28,7 @@ app.post('/hook', async function (req, res) {
 
   StationID = await GetStationID(afterMessage[0]).catch((err) => console.log(err));
 
+  console.log(StationID);
 
   RouteID = await GetRouteID(StationID, afterMessage[1]).catch((err) => console.log(err));
 
@@ -36,17 +37,22 @@ app.post('/hook', async function (req, res) {
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
   var replyMessage;
-  if(RouteID == 'undefined'){
+  var replyM1 = "";
+  var replyM2 = "";
+  if(RouteID == undefined){
     replyMessage = '없는 버스 번호입니다';
   }
   else{
-    replyMessage = await makeMessage(source.userId, StationID,RouteID);
+    replyM1 += afterMessage[1] + ' 번 버스 도착 정보입니다.\n';
+    replyM2 = await makeMessage(source.userId, StationID,RouteID);
+    replyMessage = replyM1 + replyM2;
   }
+  console.log(replyMessage);
+  console.log('------------');
   // request log
   console.log('======================', new Date(), '======================');
   console.log('[request source] ', eventObj.source);
   console.log('[request message]', eventObj.message);
-
   recvMessage(eventObj.replyToken, replyMessage);
 
   res.sendStatus(200);

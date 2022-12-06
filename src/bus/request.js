@@ -49,7 +49,7 @@ function callRequest(stationKey, message = "all") {
             // }
             for(let i in arrivalList){
                 if(arrivalList[i].routeId._text == message){
-                    result += `${routeIdToBusNum[arrivalList[i].routeId._text]}번 버스 도착 정보입니다\n`;
+                    //result += `${routeIdToBusNum[arrivalList[i].routeId._text]}번 버스 도착 정보입니다\n`;
                     result += `첫 번째 도착: ${arrivalList[i].predictTime1._text}분\n두 번째 도착: ${arrivalList[i].predictTime2._text}분\n\n`;
                 }
             }
