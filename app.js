@@ -23,9 +23,15 @@ app.post('/hook', async function (req, res) {
   var StationID;
 
   var eventObj = req.body.events[0];
+  console.log(eventObj)
   var source = eventObj.source;
   var message = eventObj.message;
-
+  
+  if(eventObj.type == "postback") {
+    push(source.userId, "hi")
+    res.sendStatus(200);
+    return;
+  }
   var afterMessage = message.text.split('\n');
 
   StationID = await GetStationID(afterMessage[0]).catch((err) => console.log(err));
