@@ -10,9 +10,9 @@
 [* 프로젝트 구조 / 동작 방식](#프로젝트-구조-/-동작-방식)  
 [* Usage](#Usage)  
 [* Roadmap](#Roadmap)  
-[* Contributing](#Contributing)
-[* License](#License)
-[* Contact](#Contact)
+[* Contributing](#Contributing)  
+[* License](#License)  
+[* Contact](#Contact)  
 
 ## About the project
 대부분의 사람들은 버스 도착 정보 어플과 채팅 어플을 각각 따로 사용한다. 이런 챗봇 서비스와 버스 도착 알람 서비스를 결합하여 어플을 번갈아 사용하는 불편함을 없앨 수 있다. 또한 향후에 추가 기능을 더 구현하여 확장성 있는 챗봇 서비스가 될 것이라고 예상된다.
