@@ -1,6 +1,5 @@
 const request = require('request');
 var convert = require('xml-js'); // xml 파일을 json으로 변환
-const Station_Key = '3NEtY8P7tLlXUJtdgstFMqDvwt%2FYg1jcxchYNhThC5OQAT0CPKC%2BskRCn1nebyPuU%2BMtwGtt9d9%2BREAqUOed%2Bg%3D%3D';
 var Route_URL2 = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList';
 // 정류소 ID 받아오기
 // 입력값: 정류소 명 (ex: '사색의광장')
@@ -8,7 +7,7 @@ var Route_URL2 = 'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStat
 
 function OneStationID(RouteID,name) {
     return new Promise((resolve, reject) => {
-        var queryParams_GetRouteID = '?' + encodeURIComponent('serviceKey') + '=' + Station_Key; /* Service Key*/
+        var queryParams_GetRouteID = '?' + encodeURIComponent('serviceKey') + '=' + process.env.ROUTE_KEY; /* Service Key*/
         queryParams_GetRouteID += '&' + encodeURIComponent('routeId') + '=' + encodeURIComponent(RouteID); /* 입력값 */
         Route_URL2 = Route_URL2 + queryParams_GetRouteID;
     
