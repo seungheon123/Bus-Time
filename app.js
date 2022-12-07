@@ -18,9 +18,13 @@ const OneStationID = require('./src/onestationid.js');
 var app = express();
 app.use(bodyParser.json());
 
+userData = {}
+
 app.post('/hook', async function (req, res) {
   var RouteID;
   var StationID;
+  var alarmTiming;
+  var busName;
 
   var eventObj = req.body.events[0];
   console.log(eventObj)
@@ -28,22 +32,38 @@ app.post('/hook', async function (req, res) {
   var message = eventObj.message;
   
   if(eventObj.type == "postback") {
-    push(source.userId, "hi")
-    res.sendStatus(200);
-    return;
+    if(!userData[source.userId]) {
+      console.log("잘못된 접근");
+      recvMessage(eventObj.replyToken, "잘못된 접근입니다")
+      res.sendStatus(200)
+      return
+    }
+    if(eventObj.postback.data == "selectFirst") {
+      stationId = userData[source.userId].firstOption
+    } else {
+      stationId = userData[source.userId].secondOption
+    }
+    
+    RouteID = userData[source.userId].RouteID
+    alarmTiming = userData[source.userId].alarmTiming
+  } else {
+    var afterMessage = message.text.split('\n');
+    StationID = await GetStationID(afterMessage[0]).catch((err) => console.log(err));
+    console.log(StationID);
+  
+    RouteID = await GetRouteID(StationID[0], afterMessage[1]).catch((err) => console.log(err));
+    console.log(RouteID); // RouteID 출력되도록 수정했습니다
+  
+    alarmTiming = parseInt(afterMessage[2])
   }
-  var afterMessage = message.text.split('\n');
 
-  StationID = await GetStationID(afterMessage[0]).catch((err) => console.log(err));
+  if(afterMessage) {
+    busName = afterMessage[1]
+  } else {
+    busName = userData[source.userId].busName
+  }
 
-  console.log(StationID);
-
-  RouteID = await GetRouteID(StationID[0], afterMessage[1]).catch((err) => console.log(err));
-
-  console.log(RouteID); // RouteID 출력되도록 수정했습니다
-
-
-  if (StationID.length > 1) {
+  if (eventObj.type != "postback" && StationID.length > 1) {
     console.log(StationID[0]);
     console.log(StationID[1]);
   
@@ -54,13 +74,14 @@ app.post('/hook', async function (req, res) {
     }
     console.log(m[0]);
   
-    var a = await confirm(eventObj.replyToken,m[0], m[2]);
-    console.log(a);
-    if (a == m[0]) {
-      StationID[0] = m[1];
-    }
-    else{
-      StationID[0] = m[3];
+    await confirm(eventObj.replyToken,m[0], m[2]);
+
+    userData[source.userId] = {
+      firstOption : m[1],
+      secondOption : m[3],
+      RouteID : RouteID,
+      alarmTiming: alarmTiming,
+      busName : afterMessage[1]
     }
 
   }
@@ -72,15 +93,15 @@ app.post('/hook', async function (req, res) {
     replyMessage = '없는 버스 번호입니다';
   }
   else{
-    replyMessage += afterMessage[1] + ' 번 버스 도착 정보입니다.\n';
+    replyMessage += busName + ' 번 버스 도착 정보입니다.\n';
     replyMessage += await makeMessage(source.userId, StationID,RouteID);
   }
 
   // 알람 설정
-  if(parseInt(afterMessage[2])) {
+  if(alarmTiming) {
     if(RouteID && StationID) {
-      busArrivalAlarm({stationId: StationID[0], routeId: RouteID, alarmTiming: parseInt(afterMessage[2])}).then( (info) => {
-        push(source.userId, afterMessage[1] + "번 버스가 곧 도착합니다.");
+      busArrivalAlarm({stationId: StationID[0], routeId: RouteID, alarmTiming: alarmTiming}).then( (info) => {
+        push(source.userId, busName + "번 버스가 곧 도착합니다.");
       })
     } else {
       replyMessage += " 알람은 설정되지 않았습니다"
