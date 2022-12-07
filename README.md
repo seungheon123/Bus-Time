@@ -3,7 +3,7 @@
 
 
 ## 순서
-[* About the project](#About-the-project)"\n"
+[* About the project"\n"](#About-the-project)
 [* Getting Started](#Getting-Started)
 [* Prerequisites](#Prerequisites)
 [* installation](#installation)
