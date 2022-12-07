@@ -15,7 +15,7 @@ function GetStationID(GivenStationName) {
         var requestURL1 = Station_URL + queryParams_GetStationID;
     
         request.get(requestURL1, (err, res, body) => {
-            var StationID;
+            var StationID = [];
             if (err) {
                 console.log('err => ' + err);
                 reject(err);
@@ -39,12 +39,9 @@ function GetStationID(GivenStationName) {
                         if (stationList[i].stationName._text == GivenStationName) {
                             // console.log(stationList[i].stationId._text);
                             count++;
-                            StationID = stationList[i].stationId._text;
+                            StationID.push(stationList[i].stationId._text);
                         }
-                    }
-    
-                    if (count > 1) {
-                        // 현경님 함수 호출
+
                     }
                     resolve(StationID);
                 } else {
