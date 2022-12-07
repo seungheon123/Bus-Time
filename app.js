@@ -10,10 +10,10 @@ const sslport = 23023;
 
 const bodyParser = require('body-parser');
 
-const { recvMessage, makeMessage, push } = require('./src/chatbot');
+const { recvMessage, makeMessage, push, confirm } = require('./src/chatbot');
 const { GetStationID, GetRouteID } = require('./src/bus/getID.js');
 const { busArrivalAlarm } = require('./src/alarm');
-const OneStationID = require('./src/bus/onestationid.js');
+const OneStationID = require('./src/onestationid.js');
 
 var app = express();
 app.use(bodyParser.json());
