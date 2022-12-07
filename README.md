@@ -3,10 +3,10 @@
 
 
 ## 순서
-[* About the project"\n"](#About-the-project)
-[* Getting Started](#Getting-Started)
-[* Prerequisites](#Prerequisites)
-[* installation](#installation)
+[1 About the project  ](#About-the-project)
+[2 Getting Started  ](#Getting-Started)
+[3 Prerequisites  ](#Prerequisites)
+[4 installation  ](#installation)
 * 프로젝트 구조 / 동작 방식
 * Usage
 * Roadmap
