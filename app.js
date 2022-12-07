@@ -39,9 +39,9 @@ app.post('/hook', async function (req, res) {
       return
     }
     if(eventObj.postback.data == "selectFirst") {
-      stationID = userData[source.userId].firstOption
+      StationID = userData[source.userId].firstOption
     } else {
-      stationID = userData[source.userId].secondOption
+      StationID = userData[source.userId].secondOption
     }
     
     RouteID = userData[source.userId].RouteID
