@@ -96,7 +96,7 @@ Project Link: [https://github.com/seungheon123/Bus-Time/](https://github.com/seu
 ## .env 파일 설정
 DOMAIN =  
 LINE_REPLY_URL =  
-CHATBOT_TOKEN =  
-SERVICE_KEY =  
-KEY=  
-ROUTE_KEY =   
+CHATBOT_TOKEN =   
+SERVICE_KEY = 경기도_버스도착정보 조회 api  
+KEY= 경기도_정류소 조회 api  
+ROUTE_KEY = 경기도_버스노선 조회 api  
