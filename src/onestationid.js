@@ -42,7 +42,7 @@ function OneStationID(RouteID,name) {
                             }
                             else {
                               lst.push(routeStationList[i+1].stationName._text + "방면") ;//다음정류장(i+1번째)명을 lst에 추가
-                              lst.push(routeStationList[i].stationId._test);//(i번째) 정류장 stationid값을 lst에 추가
+                              lst.push(routeStationList[i].stationId._text);//(i번째) 정류장 stationid값을 lst에 추가
                             }
                         }
                     }
