@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const { recvMessage, makeMessage, push } = require('./src/chatbot');
 const { GetStationID, GetRouteID } = require('./src/bus/getID.js');
 const { busArrivalAlarm } = require('./src/alarm');
+const OneStationID = require('./src/bus/onestationid.js');
 
 var app = express();
 app.use(bodyParser.json());
@@ -31,9 +32,32 @@ app.post('/hook', async function (req, res) {
 
   console.log(StationID);
 
-  RouteID = await GetRouteID(StationID, afterMessage[1]).catch((err) => console.log(err));
+  RouteID = await GetRouteID(StationID[0], afterMessage[1]).catch((err) => console.log(err));
 
   console.log(RouteID); // RouteID 출력되도록 수정했습니다
+
+
+  if (StationID.length > 1) {
+    console.log(StationID[0]);
+    console.log(StationID[1]);
+  
+    m = await OneStationID(RouteID, afterMessage[0]).catch((err) => console.log(err));
+    if (!m) {
+      recvMessage(eventObj.replyToken, "OneStationID오류");  
+      return res.sendStatus(400);
+    }
+    console.log(m[0]);
+  
+    var a = await confirm(eventObj.replyToken,m[0], m[2]);
+    console.log(a);
+    if (a == m[0]) {
+      StationID[0] = m[1];
+    }
+    else{
+      StationID[0] = m[3];
+    }
+
+  }
 
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
@@ -49,7 +73,7 @@ app.post('/hook', async function (req, res) {
   // 알람 설정
   if(parseInt(afterMessage[2])) {
     if(RouteID && StationID) {
-      busArrivalAlarm({stationId: StationID, routeId: RouteID, alarmTiming: parseInt(afterMessage[2])}).then( (info) => {
+      busArrivalAlarm({stationId: StationID[0], routeId: RouteID, alarmTiming: parseInt(afterMessage[2])}).then( (info) => {
         push(source.userId, afterMessage[1] + "번 버스가 곧 도착합니다.");
       })
     } else {

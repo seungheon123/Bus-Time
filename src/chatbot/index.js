@@ -6,7 +6,13 @@ let userState = {};
 
 
 async function makeMessage(replyToken, stationId, message) {
+    if (message === '전체') {
+        return await callRequest(stationId);
+    } 
+
+   else{
     return await callRequest(stationId,message);
+   }
     
 }
 function recvMessage(replyToken, message) {
@@ -58,8 +64,49 @@ function push(userId, message) {
     console.log("[push]")
     console.log(message)
 };
+
+function confirm (replyToken,m1,m2) {
+    request.post(
+        {
+            url: process.env.LINE_REPLY_URL,
+            headers: {
+                'Authorization': `Bearer ${process.env.CHATBOT_TOKEN}`
+            },
+            json: {
+                "replyToken": replyToken,
+                "messages" : [
+                    {
+                        "type": "text", // ①
+                        "text": "중복된 정류소명이 존재합니다.",
+                        "quickReply": { // ②
+                          "items": [
+                            {
+                              "type": "action", // ③
+                              "action": {
+                                "type": "message",
+                                "label": m1,
+                                "text": m1
+                              }
+                            },
+                            {
+                              "type": "action",
+                              "action": {
+                                "type": "message",
+                                "label": m2,
+                                "text": m2
+                              }
+                            }
+                          ]
+                        }   
+                    }
+                ] 
+            } 
+        }
+    );
+}
 module.exports = {
     push,
     makeMessage,
-    recvMessage
+    recvMessage,
+    confirm
 }
