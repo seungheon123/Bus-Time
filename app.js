@@ -100,6 +100,7 @@ app.post('/hook', async function (req, res) {
   // 알람 설정
   if(alarmTiming) {
     if(RouteID && StationID) {
+      replyMessage += "\n도착 " + alarmTiming + "분 전에 알람을 설정했습니다"
       busArrivalAlarm({stationId: StationID[0], routeId: RouteID, alarmTiming: alarmTiming}).then( (info) => {
         push(source.userId, busName + "번 버스가 곧 도착합니다.");
       })
