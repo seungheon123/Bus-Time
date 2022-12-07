@@ -10,9 +10,8 @@ function OneStationID(RouteID,name) {
     return new Promise((resolve, reject) => {
         var queryParams_GetRouteID = '?' + encodeURIComponent('serviceKey') + '=' + Station_Key; /* Service Key*/
         queryParams_GetRouteID += '&' + encodeURIComponent('routeId') + '=' + encodeURIComponent(RouteID); /* 입력값 */
-        Route_URL2 = Route_URL2 + queryParams_GetRouteID;
     
-        request.get(Route_URL2, (err, res, body) => {
+        request.get(Route_URL2 + queryParams_GetRouteID, (err, res, body) => {
             var StationID = [];
             if (err) {
                 console.log('err => ' + err);
