@@ -94,4 +94,9 @@ Distributed under the MIT License.
 Project Link: [https://github.com/seungheon123/Bus-Time/](https://github.com/seungheon123/Bus-Time/)
 
 ## .env 파일 설정
-~~
+DOMAIN = 
+LINE_REPLY_URL =
+CHATBOT_TOKEN = 
+SERVICE_KEY =
+KEY=
+ROUTE_KEY = 
