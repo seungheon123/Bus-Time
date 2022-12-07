@@ -83,17 +83,17 @@ function confirm (replyToken,m1,m2) {
                             {
                               "type": "action", // ③
                               "action": {
-                                "type": "message",
+                                "type": "postback",
                                 "label": m1,
-                                "text": m1
+                                "data" : "selectFirst"
                               }
                             },
                             {
                               "type": "action",
                               "action": {
-                                "type": "message",
+                                "type": "postback",
                                 "label": m2,
-                                "text": m2
+                                "data": "selectSecond"
                               }
                             }
                           ]
