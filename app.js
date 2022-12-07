@@ -63,7 +63,9 @@ app.post('/hook', async function (req, res) {
     busName = userData[source.userId].busName
   }
 
+  let isOverlapped = false
   if (eventObj.type != "postback" && StationID.length > 1) {
+    isOverlapped = true;
     console.log(StationID[0]);
     console.log(StationID[1]);
   
@@ -85,6 +87,9 @@ app.post('/hook', async function (req, res) {
     }
 
   }
+  if(eventObj.type == "message") {
+    StationID = StationID[0];
+  }
 
   // console.log(afterMessage[0]);
   // console.log(afterMessage[1]);
@@ -98,10 +103,10 @@ app.post('/hook', async function (req, res) {
   }
 
   // 알람 설정
-  if(alarmTiming) {
+  if(alarmTiming && !isOverlapped) {
     if(RouteID && StationID) {
       replyMessage += "\n도착 " + alarmTiming + "분 전에 알람을 설정했습니다"
-      busArrivalAlarm({stationId: StationID[0], routeId: RouteID, alarmTiming: alarmTiming}).then( (info) => {
+      busArrivalAlarm({stationId: StationID, routeId: RouteID, alarmTiming: alarmTiming}).then( (info) => {
         push(source.userId, busName + "번 버스가 곧 도착합니다.");
       })
     } else {
