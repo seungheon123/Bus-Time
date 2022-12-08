@@ -96,7 +96,7 @@ Distributed under the MIT License.
 
 Project Link: [https://github.com/seungheon123/Bus-Time/](https://github.com/seungheon123/Bus-Time/)
 
-## .env 파일 설정
+##.env 파일 설정
 DOMAIN =    
 LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply'   
 LINE_PUSH_URL = 'https://api.line.me/v2/bot/message/push'   
