@@ -99,10 +99,10 @@ Distributed under the MIT License.
 Project Link: [https://github.com/seungheon123/Bus-Time/](https://github.com/seungheon123/Bus-Time/)
 
 ## .env 파일 설정
-DOMAIN =    
-LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply'   
-LINE_PUSH_URL = 'https://api.line.me/v2/bot/message/push'   
-CHATBOT_TOKEN =     
-SERVICE_KEY = 경기도_버스도착정보 조회 api    
-KEY= 경기도_정류소 조회 api    
-ROUTE_KEY = 경기도_버스노선 조회 api    
+* DOMAIN =    
+* LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply'   
+* LINE_PUSH_URL = 'https://api.line.me/v2/bot/message/push'   
+* CHATBOT_TOKEN =     
+* SERVICE_KEY = 경기도_버스도착정보 조회 api    
+* KEY= 경기도_정류소 조회 api    
+* ROUTE_KEY = 경기도_버스노선 조회 api    
