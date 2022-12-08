@@ -34,7 +34,7 @@
 #개발자
 1. Clone Repository  
 터미널을 열고 다음을 입력
-git clone ...  
+git clone https://github.com/seungheon123/Bus-Time.git  
 
 2. Node.js Download
 터미널을 열고 다음을 입력  
