@@ -5,7 +5,7 @@
 ## 순서
 *[ About the project](#About-the-project)  
 *[ Getting Started](#Getting-Started)  
-*[ 프로젝트 구조 / 동작 방식](#-프로젝트-구조-/-동작-방식)  
+*[ 프로젝트 구조 / 동작 방식](#-프로젝트-구조--동작-방식)  
 *[ Usage](#Usage)  
 *[ Roadmap](#Roadmap)  
 *[ Contributing](#Contributing)  
