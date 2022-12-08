@@ -3,14 +3,14 @@
 
 
 ## 순서
-[* About the project](#About-the-project)  
-[* Getting Started](#Getting-Started)  
-[* 프로젝트 구조 / 동작 방식](#프로젝트-구조-/-동작-방식)  
-[* Usage](#Usage)  
-[* Roadmap](#Roadmap)  
-[* Contributing](#Contributing)  
-[* License](#License)  
-[* Contact](#Contact)  
+*[ About the project](#About-the-project)  
+*[ Getting Started](#Getting-Started)  
+*[ 프로젝트 구조 / 동작 방식](#프로젝트-구조-/-동작-방식)  
+*[ Usage](#Usage)  
+*[ Roadmap](#Roadmap)  
+*[ Contributing](#Contributing)  
+*[ License](#License)  
+*[ Contact](#Contact)  
 
 ## About the project
 사람들은 버스 도착 정보 어플과 채팅 어플을 각각 따로 사용한다. 때문에 두 어플을 번갈아 사용하는 불편함이 있다. 
@@ -39,7 +39,7 @@ git clone https://github.com/seungheon123/Bus-Time.git
 npm install  
 
 3. .env 파일 생성  
-아래 .env 파일  설정을 보고 자신의 것으로 작성
+아래 [.env 파일 설정](#.env-파일-설정) 을 보고 자신의 것으로 작성
 
 4. node.js로 실행  
 
