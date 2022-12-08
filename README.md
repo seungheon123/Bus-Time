@@ -3,14 +3,15 @@
 
 
 ## 순서
-*[ About the project](#About-the-project)  
-*[ Getting Started](#Getting-Started)  
-*[ 프로젝트 구조 / 동작 방식](#-프로젝트-구조-/-동작-방식)  
-*[ Usage](#Usage)  
-*[ Roadmap](#Roadmap)  
-*[ Contributing](#Contributing)  
-*[ License](#License)  
-*[ Contact](#Contact)  
+* [ About the project](#About-the-project)  
+* [ Getting Started](#Getting-Started)  
+* [ 프로젝트 구조 / 동작 방식](#-프로젝트-구조-/-동작-방식)  
+* [ Usage](#Usage)  
+* [ Roadmap](#Roadmap)  
+* [ Contributing](#Contributing)  
+* [ License](#License)  
+* [ Contact](#Contact)  
+* [ Setting .env](#env-파일-설정)  
 
 ## About the project
 사람들은 버스 도착 정보 어플과 채팅 어플을 각각 따로 사용한다. 때문에 두 어플을 번갈아 사용하는 불편함이 있다. 
@@ -29,7 +30,7 @@
 
 
 ## Getting Started
-*개발자
+### 개발자
 1. Clone Repository  
 터미널을 열고 다음을 입력
 git clone https://github.com/seungheon123/Bus-Time.git  
@@ -43,7 +44,7 @@ npm install
 
 4. node.js로 실행  
 
-*사용자  
+### 사용자  
 LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력  
 
 <img src="https://user-images.githubusercontent.com/52253037/206449669-1706f52c-cdf2-4a78-b4c8-915a714627b1.png" width = "20%" height= "20%" align="left"/><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br>
@@ -85,7 +86,7 @@ LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력
 
 ## License
 Distributed under the MIT License.
-자세한 사항은 ```LICENSE.txt``` 파일을 참조바랍니다.
+자세한 사항은 ```LICENSE``` 파일을 참조바랍니다.
 
 ## Contact
 * 한승헌(2019102238)  seungheon123@khu.ac.kr
