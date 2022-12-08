@@ -39,7 +39,7 @@ git clone https://github.com/seungheon123/Bus-Time.git
 npm install  
 
 3. .env 파일 생성  
-아래 [.env 파일 설정](#-.env-파일-설정) 을 보고 자신의 것으로 작성
+아래 [.env 파일 설정](#.env 파일 설정) 을 보고 자신의 것으로 작성
 
 4. node.js로 실행  
 
