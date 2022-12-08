@@ -31,7 +31,7 @@
 
 ## Getting Started
 ### Prerequisites
-#개발자
+*개발자
 1. Clone Repository  
 터미널을 열고 다음을 입력
 git clone https://github.com/seungheon123/Bus-Time.git  
@@ -46,11 +46,10 @@ npm install
 4. node.js로 실행  
 
 ### installation
-#사용자
-다음은 사용자들의 설정 및 사용 방법에 대한 예시입니다. 
-1. 라인 채팅에서 챗봇 서비스를 친구추가합니다.
-2. asd
-3. asd
+*사용자  
+LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력  
+
+<img src="https://user-images.githubusercontent.com/52253037/206449669-1706f52c-cdf2-4a78-b4c8-915a714627b1.png" width = "20%" height= "20%" align="left"/><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br>
 
 ## 프로젝트 구조 / 동작 방식
 [](사진 주소)
