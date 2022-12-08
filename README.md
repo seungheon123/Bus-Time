@@ -62,10 +62,10 @@ LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력
 1. 정류장 이름하고 버스 번호를 입력한다
 <img src="https://user-images.githubusercontent.com/52253037/206446856-4b1818c3-169e-42eb-b207-6fba4d0771db.png" width = "450" height= "750" />
 2. 정류장 이름이 중복되는 경우 어느 방면인지 선택
-<img src="https://user-images.githubusercontent.com/52253037/206480273-f409d929-3999-46a7-a9f7-7c57745571af.jpg" width = "400" height= "700" />
-<img src="https://user-images.githubusercontent.com/52253037/206483161-963bbb7d-1f6f-450c-a81e-8ce79641c1a7.jpg" width = "400" height= "700" />
+<img src="https://user-images.githubusercontent.com/52253037/206480273-f409d929-3999-46a7-a9f7-7c57745571af.jpg" width = "450" height= "750" />
+<img src="https://user-images.githubusercontent.com/52253037/206483161-963bbb7d-1f6f-450c-a81e-8ce79641c1a7.jpg" width = "450" height= "750" />
 3. 노선 번호 밑에 원하는 시간(n분)을 입력하면 도착하기 n분전에 알림 전송
-<img src="https://user-images.githubusercontent.com/52253037/206479338-554ba957-fdc9-4a9c-9a5f-546f2984faf9.jpg" width = "400" height= "700" />
+<img src="https://user-images.githubusercontent.com/52253037/206479338-554ba957-fdc9-4a9c-9a5f-546f2984faf9.jpg" width = "450" height= "750" />
 
 ## Roadmap
 * [X] 특정 정류장 검색
