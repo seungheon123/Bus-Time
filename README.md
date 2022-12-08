@@ -5,8 +5,6 @@
 ## 순서
 [* About the project](#About-the-project)  
 [* Getting Started](#Getting-Started)  
-[* Prerequisites](#Prerequisites)  
-[* installation](#installation)  
 [* 프로젝트 구조 / 동작 방식](#프로젝트-구조-/-동작-방식)  
 [* Usage](#Usage)  
 [* Roadmap](#Roadmap)  
@@ -30,7 +28,6 @@
 
 
 ## Getting Started
-### Prerequisites
 *개발자
 1. Clone Repository  
 터미널을 열고 다음을 입력
@@ -45,7 +42,6 @@ npm install
 
 4. node.js로 실행  
 
-### installation
 *사용자  
 LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력  
 
