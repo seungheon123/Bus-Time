@@ -31,13 +31,22 @@
 
 ## Getting Started
 ### Prerequisites
-사용법과 필요한 항목을 설치하는 방법에 대한 예시입니다.
-* npm
-```javascript
-npm install
-```
+#개발자
+1. Clone Repository  
+터미널을 열고 다음을 입력
+git clone ...  
+
+2. Node.js Download
+터미널을 열고 다음을 입력  
+npm install  
+
+3. .env 파일 생성  
+아래 .env 파일  설정을 보고 자신의 것으로 작성
+
+4. node.js로 실행  
 
 ### installation
+#사용자
 다음은 사용자들의 설정 및 사용 방법에 대한 예시입니다. 
 1. 라인 채팅에서 챗봇 서비스를 친구추가합니다.
 2. asd
