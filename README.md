@@ -5,7 +5,7 @@
 ## 순서
 *[ About the project](#About-the-project)  
 *[ Getting Started](#Getting-Started)  
-*[ 프로젝트 구조 / 동작 방식](#프로젝트-구조-/-동작-방식)  
+*[ 프로젝트 구조 / 동작 방식](#-프로젝트-구조-/-동작-방식)  
 *[ Usage](#Usage)  
 *[ Roadmap](#Roadmap)  
 *[ Contributing](#Contributing)  
@@ -39,7 +39,7 @@ git clone https://github.com/seungheon123/Bus-Time.git
 npm install  
 
 3. .env 파일 생성  
-아래 [.env 파일 설정](#.env-파일-설정) 을 보고 자신의 것으로 작성
+아래 [.env 파일 설정](#-.env-파일-설정) 을 보고 자신의 것으로 작성
 
 4. node.js로 실행  
 
@@ -96,7 +96,7 @@ Distributed under the MIT License.
 
 Project Link: [https://github.com/seungheon123/Bus-Time/](https://github.com/seungheon123/Bus-Time/)
 
-##.env 파일 설정
+## .env 파일 설정
 DOMAIN =    
 LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply'   
 LINE_PUSH_URL = 'https://api.line.me/v2/bot/message/push'   
