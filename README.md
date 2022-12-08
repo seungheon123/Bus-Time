@@ -1,5 +1,5 @@
 # 정류소 버스 도착 시간 알리미 챗봇 
-https://github.com/seungheon123/Bus-Time/issues/25#issue-1484539513  
+<img src="https://user-images.githubusercontent.com/52253037/206446856-4b1818c3-169e-42eb-b207-6fba4d0771db.png" width = "450" height= "750" />
 
 
 ## 순서
