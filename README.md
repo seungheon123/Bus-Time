@@ -1,16 +1,17 @@
 # 정류소 버스 도착 시간 알리미 챗봇 
-<img src="https://user-images.githubusercontent.com/52253037/206446856-4b1818c3-169e-42eb-b207-6fba4d0771db.png" width = "450" height= "750" />
+<img src="https://user-images.githubusercontent.com/52253037/206446856-4b1818c3-169e-42eb-b207-6fba4d0771db.png" width = "346" height= "750" />
 
 
 ## 순서
-*[ About the project](#About-the-project)  
-*[ Getting Started](#Getting-Started)  
-*[ 프로젝트 구조 / 동작 방식](#프로젝트-구조--동작-방식)  
-*[ Usage](#Usage)  
-*[ Roadmap](#Roadmap)  
-*[ Contributing](#Contributing)  
-*[ License](#License)  
-*[ Contact](#Contact)  
+* [ About the project](#About-the-project)  
+* [ Getting Started](#Getting-Started)  
+* [ 프로젝트 구조 / 동작 방식](#-프로젝트-구조-/-동작-방식)  
+* [ Usage](#Usage)  
+* [ Roadmap](#Roadmap)  
+* [ Contributing](#Contributing)  
+* [ License](#License)  
+* [ Contact](#Contact)  
+* [ Setting .env](#env-파일-설정)  
 
 ## About the project
 사람들은 버스 도착 정보 어플과 채팅 어플을 각각 따로 사용한다. 때문에 두 어플을 번갈아 사용하는 불편함이 있다. 
@@ -29,12 +30,12 @@
 
 
 ## Getting Started
-*개발자
+### 개발자
 1. Clone Repository  
 터미널을 열고 다음을 입력
 git clone https://github.com/seungheon123/Bus-Time.git  
 
-2. Node.js Download
+2. Node.js Package Download
 터미널을 열고 다음을 입력  
 npm install  
 
@@ -43,7 +44,7 @@ npm install
 
 4. node.js로 실행  
 
-*사용자  
+### 사용자  
 LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력  
 
 <img src="https://user-images.githubusercontent.com/52253037/206449669-1706f52c-cdf2-4a78-b4c8-915a714627b1.png" width = "20%" height= "20%" align="left"/><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br><br> </br> <br> </br>
@@ -60,9 +61,14 @@ LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력
   * 데이터를 파싱, 유효한 데이터를 챗봇을 통해 사용지에게 전송한다.
 
 ## Usage
-1. .env 파일에 API Key를 채워넣는다.
-2. Node.js를 통해 서비스를 시작한다.
-3. 사용자의 명령어에 해당하는 서비스를 제공한다.
+첫번째 줄에는 정류소 이름을, 두번째 줄에는 버스 노선 번호를 입력합니다. 만약 버스가 도착하기 n분 전에 알림을 받고 싶다면, 세번째줄에 그에 해당하는 숫자를 입력합니다.  
+만약, 입력한 이름을 가지는 정류소가 2개 있다면 화면 하단에 나타나는 Quick Reply 버튼을 이용하여 정류소를 선택할 수 있습니다.  
+* 입력 예시
+```
+서그내
+8
+15
+```
 
 
 ## Roadmap
@@ -85,7 +91,7 @@ LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력
 
 ## License
 Distributed under the MIT License.
-자세한 사항은 ```LICENSE.txt``` 파일을 참조바랍니다.
+자세한 사항은 ```LICENSE``` 파일을 참조바랍니다.
 
 ## Contact
 * 한승헌(2019102238)  seungheon123@khu.ac.kr
