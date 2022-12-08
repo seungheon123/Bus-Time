@@ -61,16 +61,25 @@ LINE 어플 다운로드 -> 친구추가 -> @759gotoj 입력
   * 데이터를 파싱, 유효한 데이터를 챗봇을 통해 사용지에게 전송한다.
 
 ## Usage
-첫번째 줄에는 정류소 이름을, 두번째 줄에는 버스 노선 번호를 입력합니다. 만약 버스가 도착하기 n분 전에 알림을 받고 싶다면, 세번째줄에 그에 해당하는 숫자를 입력합니다.  
-만약, 입력한 이름을 가지는 정류소가 2개 있다면 화면 하단에 나타나는 Quick Reply 버튼을 이용하여 정류소를 선택할 수 있습니다.  
-* 입력 예시
+1. 정류장 이름하고 버스 번호를 입력한다
+<img src="https://user-images.githubusercontent.com/52253037/206446856-4b1818c3-169e-42eb-b207-6fba4d0771db.png" width = "450" height= "750" />
+*입력 방법
 ```
-서그내
-8
-15
+정류장 이름
+버스 번호
 ```
 
-
+2. 정류장 이름이 중복되는 경우 어느 방면인지 선택
+<img src="https://user-images.githubusercontent.com/52253037/206480273-f409d929-3999-46a7-a9f7-7c57745571af.jpg" width = "400" height= "700" />
+<img src="https://user-images.githubusercontent.com/52253037/206480481-f17a8d07-f753-4cd0-a6bb-17a5f43a91ed.jpg" width = "400" height= "700" />
+3. 노선 번호 밑에 원하는 시간(n분)을 입력하면 도착하기 n분전에 알림 전송
+<img src="!https://user-images.githubusercontent.com/52253037/206479338-554ba957-fdc9-4a9c-9a5f-546f2984faf9.jpg" width = "400" height= "700" />
+*입력 방법
+```
+정류장 이름
+버스 번호
+n분
+```
 ## Roadmap
 * [X] 특정 정류장 검색
 * [X] 중복된 이름의 정류장 구분
