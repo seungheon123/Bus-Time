@@ -31,7 +31,7 @@
 
 ## Getting Started
 ### Prerequisites
-사용법과 필요한 항복을 설치하는 방법에 대한 예시입니다.
+사용법과 필요한 항목을 설치하는 방법에 대한 예시입니다.
 * npm
 ```javascript
 npm install
